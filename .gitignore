@@ -6,13 +6,6 @@ node_modules
 .env
 .env.*
 !.env.example
-.vercel
-.output
 
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
+.yarn
 !.yarn/releases
-!.yarn/sdks
-!.yarn/versions

@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-375f3991.js",
+    "file": "start-bcf6e676.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -9,11 +9,15 @@
     "dynamicImports": [
       "src/routes/__layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
-      "src/routes/index.svelte"
+      "src/routes/about.svelte",
+      "src/routes/contact.svelte",
+      "src/routes/home.svelte",
+      "src/routes/index.svelte",
+      "src/routes/portfolio.svelte"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-7a4c43ac.js",
+    "file": "pages/__layout.svelte-aecfc7c7.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -21,7 +25,7 @@
       "_index-404fd54f.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-436925e4.css"
+      "assets/pages/__layout.svelte-624a1ec1.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -33,9 +37,45 @@
       "_index-404fd54f.js"
     ]
   },
+  "src/routes/about.svelte": {
+    "file": "pages/about.svelte-9c8301e2.js",
+    "src": "src/routes/about.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-404fd54f.js"
+    ]
+  },
+  "src/routes/contact.svelte": {
+    "file": "pages/contact.svelte-5aba2e7f.js",
+    "src": "src/routes/contact.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-404fd54f.js"
+    ]
+  },
+  "src/routes/home.svelte": {
+    "file": "pages/home.svelte-fb4df50f.js",
+    "src": "src/routes/home.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-404fd54f.js"
+    ]
+  },
   "src/routes/index.svelte": {
     "file": "pages/index.svelte-7dc8aeba.js",
     "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-404fd54f.js"
+    ]
+  },
+  "src/routes/portfolio.svelte": {
+    "file": "pages/portfolio.svelte-a8aa3711.js",
+    "src": "src/routes/portfolio.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
