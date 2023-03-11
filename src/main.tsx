@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { Omes } from './app/Omesis';
+import { OmesIs } from './app/Omesis';
 import './styles.css';
 
 const root = ReactDOM.createRoot(
@@ -18,7 +18,7 @@ root.render(
         position: [2, -2, 4],
       }}
     >
-      <Omes />
+      <OmesIs />
     </Canvas>
     {/* <div className="absolute top-0 bg-red-500">hallo</div> */}
   </StrictMode>

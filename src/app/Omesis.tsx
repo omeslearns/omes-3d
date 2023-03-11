@@ -2,7 +2,7 @@ import { Center, OrbitControls, Stage, Text3D } from '@react-three/drei';
 import { useControls } from 'leva';
 import { CSSProperties, useEffect, useState } from 'react';
 
-export function Omes() {
+export function OmesIs() {
   // const material = new MeshMatcapMaterial();
   // const [matcapTexture] = useMatcapTexture('7B5254_E9DCC7_B19986_C8AC91', 256);
   // useEffect(() => {
@@ -39,9 +39,7 @@ export function Omes() {
         <OrbitControls />
         <Center>
           <Text3D
-            font={
-              '../../node_modules/three/examples/fonts/helvetiker_regular.typeface.json'
-            }
+            font={'./fonts/helvetiker_regular.typeface.json'}
             // material={material}
             scale={2}
             height={0.2}
