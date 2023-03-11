@@ -1,0 +1,72 @@
+{
+  "name": "omes.is",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "docs/"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "vite": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "omes.is:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "omes.is:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "omes.is:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "omes.is:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "omes.is:build:development"
+        },
+        "production": {
+          "buildTarget": "omes.is:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/omes.is"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "coverage/omes.is"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
