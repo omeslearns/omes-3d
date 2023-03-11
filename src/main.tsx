@@ -1,4 +1,5 @@
 import { Canvas } from '@react-three/fiber';
+import { Leva } from 'leva';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { OmesIs } from './app/Omesis';
@@ -7,6 +8,7 @@ import './styles.css';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <StrictMode>
     <Canvas
@@ -20,6 +22,9 @@ root.render(
     >
       <OmesIs />
     </Canvas>
-    {/* <div className="absolute top-0 bg-red-500">hallo</div> */}
+    <Leva
+      hidden
+      titleBar={false} // default = false, hides the GUI header
+    />
   </StrictMode>
 );
