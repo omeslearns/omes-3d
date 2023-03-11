@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import { Leva } from 'leva';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { OmesIs } from './app/Omesis';
+import { Omes } from './app/Omes';
 import './styles.css';
 
 const root = ReactDOM.createRoot(
@@ -20,7 +20,7 @@ root.render(
         position: [2, -2, 4],
       }}
     >
-      <OmesIs />
+      <Omes />
     </Canvas>
     <Leva
       hidden

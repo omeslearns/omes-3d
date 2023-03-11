@@ -2,7 +2,7 @@ import { Center, OrbitControls, Stage, Text3D } from '@react-three/drei';
 import { useControls } from 'leva';
 import { CSSProperties, useEffect, useState } from 'react';
 
-export function OmesIs() {
+export function Omes() {
   // const material = new MeshMatcapMaterial();
   // const [matcapTexture] = useMatcapTexture('7B5254_E9DCC7_B19986_C8AC91', 256);
   // useEffect(() => {
@@ -34,11 +34,15 @@ export function OmesIs() {
 
   return (
     <>
+      {/* <Perf /> */}
       <color args={[background]} attach="background" />
-      <Stage shadows={false}>
-        <OrbitControls />
+      <OrbitControls enableDamping maxDistance={100} />
+      {/* <axesHelper args={[5]} /> */}
+
+      <Stage shadows={false} adjustCamera={true}>
         <Center>
           <Text3D
+            renderOrder={1}
             font={'./fonts/helvetiker_regular.typeface.json'}
             // material={material}
             scale={2}
@@ -55,6 +59,31 @@ export function OmesIs() {
             <meshNormalMaterial wireframe />
           </Text3D>
         </Center>
+        {/* <Instances>
+          {[...Array(4000)].map((a, i) => {
+            const x = (Math.random() - 0.5) * 2 * 100;
+            const y = (Math.random() - 0.5) * 2 * 100;
+            const z = (Math.random() - 0.5) * 2 * 100;
+
+            return (
+              <>
+                <boxGeometry />
+                <meshStandardMaterial />
+                <Instance
+                  position={[x, y, z]}
+                  scale={1 + Math.random() * 5}
+                  rotation={[
+                    Math.random() - 0.5,
+                    Math.random() - 0.5,
+                    Math.random() - 0.5,
+                  ]}
+                  color={chroma.random().hex()}
+                />
+              </>
+            );
+          })}
+          <boxGeometry />
+        </Instances> */}
       </Stage>
     </>
   );
