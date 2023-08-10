@@ -62,19 +62,14 @@ export function Omes() {
       <color args={[background]} attach="background" />
       <OrbitControls
         enableDamping
-        minDistance={15}
+        minDistance={20}
         // maxDistance={50}
         autoRotate
         autoRotateSpeed={-0.1}
       />
       {/* <axesHelper args={[5]} /> */}
 
-      <Stage
-        shadows={false}
-        adjustCamera={false}
-        environment={null}
-        preset="soft"
-      >
+      <Stage shadows={false} adjustCamera={false} environment={null}>
         <Center>
           <Text3D
             renderOrder={1}
