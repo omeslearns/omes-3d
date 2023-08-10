@@ -1,6 +1,15 @@
-import { Center, OrbitControls, Stage, Text3D } from '@react-three/drei';
+import {
+  Center,
+  Instance,
+  Instances,
+  OrbitControls,
+  Stage,
+  Text3D,
+} from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import chroma from 'chroma-js';
 import { useControls } from 'leva';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, createRef, useEffect, useRef, useState } from 'react';
 
 export function Omes() {
   // const material = new MeshMatcapMaterial();
@@ -12,6 +21,15 @@ export function Omes() {
   //   material.matcap = matcapTexture;
   //   material.needsUpdate = true;
   // }, []);
+
+  const cubes = [...Array(4000)];
+
+  // useFrame((a, delta) => {
+  //   cubes.forEach((c) => {
+  //     c?.current?.rotation.y && (c.current.rotation.y += +delta);
+  //     console.log('cubes ', c?.current);
+  //   });
+  // });
 
   const LIGHT: CSSProperties['backgroundColor'] = 'white';
   const DARK: CSSProperties['backgroundColor'] = '#222';
@@ -36,10 +54,10 @@ export function Omes() {
     <>
       {/* <Perf /> */}
       <color args={[background]} attach="background" />
-      <OrbitControls enableDamping maxDistance={100} />
+      <OrbitControls enableDamping maxDistance={30} />
       {/* <axesHelper args={[5]} /> */}
 
-      <Stage shadows={false} adjustCamera={true}>
+      <Stage shadows={false} adjustCamera={true} environment={null}>
         <Center>
           <Text3D
             renderOrder={1}
@@ -59,8 +77,8 @@ export function Omes() {
             <meshNormalMaterial wireframe />
           </Text3D>
         </Center>
-        {/* <Instances>
-          {[...Array(4000)].map((a, i) => {
+        <Instances>
+          {cubes.map((ref, i) => {
             const x = (Math.random() - 0.5) * 2 * 100;
             const y = (Math.random() - 0.5) * 2 * 100;
             const z = (Math.random() - 0.5) * 2 * 100;
@@ -72,6 +90,7 @@ export function Omes() {
                 <Instance
                   position={[x, y, z]}
                   scale={1 + Math.random() * 5}
+                  ref={ref}
                   rotation={[
                     Math.random() - 0.5,
                     Math.random() - 0.5,
@@ -83,7 +102,7 @@ export function Omes() {
             );
           })}
           <boxGeometry />
-        </Instances> */}
+        </Instances>
       </Stage>
     </>
   );
