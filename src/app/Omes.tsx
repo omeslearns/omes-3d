@@ -9,7 +9,7 @@ import {
 import { useFrame } from '@react-three/fiber';
 import chroma from 'chroma-js';
 import { useControls } from 'leva';
-import { CSSProperties, createRef, useEffect, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 export function Omes() {
   // const material = new MeshMatcapMaterial();
@@ -22,14 +22,20 @@ export function Omes() {
   //   material.needsUpdate = true;
   // }, []);
 
-  const cubes = [...Array(4000)];
+  const cubes = [...Array(10000)];
+  const refs = useRef([]);
 
-  // useFrame((a, delta) => {
-  //   cubes.forEach((c) => {
-  //     c?.current?.rotation.y && (c.current.rotation.y += +delta);
-  //     console.log('cubes ', c?.current);
-  //   });
-  // });
+  useFrame((state, delta) => {
+    refs.current.forEach((c) => {
+      c?.rotation.x && (c.rotation.x += +delta * 0.2);
+      c?.rotation.y && (c.rotation.y += +delta * 0.2);
+      c?.rotation.z && (c.rotation.z += +delta * 0.2);
+    });
+  });
+  console.log('cubes ', cubes);
+  console.log('refs ', refs);
+  window.cubes = cubes;
+  window.refs = refs;
 
   const LIGHT: CSSProperties['backgroundColor'] = 'white';
   const DARK: CSSProperties['backgroundColor'] = '#222';
@@ -54,10 +60,21 @@ export function Omes() {
     <>
       {/* <Perf /> */}
       <color args={[background]} attach="background" />
-      <OrbitControls enableDamping maxDistance={30} />
+      <OrbitControls
+        enableDamping
+        minDistance={15}
+        // maxDistance={50}
+        autoRotate
+        autoRotateSpeed={-0.1}
+      />
       {/* <axesHelper args={[5]} /> */}
 
-      <Stage shadows={false} adjustCamera={true} environment={null}>
+      <Stage
+        shadows={false}
+        adjustCamera={false}
+        environment={null}
+        preset="soft"
+      >
         <Center>
           <Text3D
             renderOrder={1}
@@ -72,25 +89,27 @@ export function Omes() {
             bevelOffset={0}
             bevelSegments={4}
           >
-            omes is
+            omes.is
             {/* <meshStandardMaterial color={'ivory'} wireframe /> */}
             <meshNormalMaterial wireframe />
           </Text3D>
         </Center>
         <Instances>
           {cubes.map((ref, i) => {
-            const x = (Math.random() - 0.5) * 2 * 100;
-            const y = (Math.random() - 0.5) * 2 * 100;
-            const z = (Math.random() - 0.5) * 2 * 100;
+            const position = [
+              (Math.random() + 0.02) * 2 * 50 * Math.sign(Math.random() - 0.5),
+              (Math.random() + 0.02) * 2 * 50 * Math.sign(Math.random() - 0.5),
+              (Math.random() + 0.02) * 2 * 50 * Math.sign(Math.random() - 0.5),
+            ];
 
             return (
               <>
                 <boxGeometry />
                 <meshStandardMaterial />
                 <Instance
-                  position={[x, y, z]}
+                  position={position}
                   scale={1 + Math.random() * 5}
-                  ref={ref}
+                  ref={(ref) => (refs.current[i] = ref)}
                   rotation={[
                     Math.random() - 0.5,
                     Math.random() - 0.5,
