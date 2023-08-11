@@ -63,7 +63,7 @@ export function Omes() {
       <OrbitControls
         enableDamping
         minDistance={20}
-        // maxDistance={50}
+        maxDistance={50}
         autoRotate
         autoRotateSpeed={-0.1}
       />
@@ -94,7 +94,10 @@ export function Omes() {
             function createPosition() {
               const pos = [...Array(3)].map((a) => Math.random() - 0.5);
               const [x, y, z] = pos;
-              if (Math.sqrt(x ** 2 + y ** 2 + z ** 2) < 0.1)
+              if (
+                Math.sqrt(x ** 2 + y ** 2 + z ** 2) < 0.1 ||
+                Math.sqrt(x ** 2 + y ** 2 + z ** 2) > 0.5
+              )
                 return createPosition();
               return pos;
             }
