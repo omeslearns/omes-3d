@@ -22,14 +22,14 @@ export function Omes() {
   //   material.needsUpdate = true;
   // }, []);
 
-  const cubes = [...Array(10000)];
+  const cubes = [...Array(1000)].map((a) => (Math.random() - 0.5) / 2);
   const refs = useRef([]);
 
   useFrame((state, delta) => {
-    refs.current.forEach((c) => {
-      c?.rotation.x && (c.rotation.x += +delta * 0.2);
-      c?.rotation.y && (c.rotation.y += +delta * 0.2);
-      c?.rotation.z && (c.rotation.z += +delta * 0.2);
+    refs.current.forEach((c, i) => {
+      c?.rotation.x && (c.rotation.x += delta * cubes[i]);
+      c?.rotation.y && (c.rotation.y += delta * cubes[i]);
+      c?.rotation.z && (c.rotation.z += delta * cubes[i]);
     });
   });
   console.log('cubes ', cubes);
@@ -37,7 +37,7 @@ export function Omes() {
   window.cubes = cubes;
   window.refs = refs;
 
-  const LIGHT: CSSProperties['backgroundColor'] = 'white';
+  const LIGHT: CSSProperties['backgroundColor'] = '#DDD';
   const DARK: CSSProperties['backgroundColor'] = '#222';
   const [darkMode, set_darkMode] = useState(
     window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -91,11 +91,15 @@ export function Omes() {
         </Center>
         <Instances>
           {cubes.map((ref, i) => {
-            const position = [
-              (Math.random() + 0.02) * 2 * 50 * Math.sign(Math.random() - 0.5),
-              (Math.random() + 0.02) * 2 * 50 * Math.sign(Math.random() - 0.5),
-              (Math.random() + 0.02) * 2 * 50 * Math.sign(Math.random() - 0.5),
-            ];
+            function createPosition() {
+              const pos = [...Array(3)].map((a) => Math.random() - 0.5);
+              const [x, y, z] = pos;
+              if (Math.sqrt(x ** 2 + y ** 2 + z ** 2) < 0.1)
+                return createPosition();
+              return pos;
+            }
+
+            const position = createPosition().map((a) => a * 100);
 
             return (
               <>
