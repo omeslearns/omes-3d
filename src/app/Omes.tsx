@@ -11,6 +11,8 @@ import chroma from 'chroma-js';
 import { useControls } from 'leva';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 
+const AMOUNT = 3000;
+
 export function Omes() {
   // const material = new MeshMatcapMaterial();
   // const [matcapTexture] = useMatcapTexture('7B5254_E9DCC7_B19986_C8AC91', 256);
@@ -22,7 +24,7 @@ export function Omes() {
   //   material.needsUpdate = true;
   // }, []);
 
-  const cubes = [...Array(1000)].map((a) => (Math.random() - 0.5) / 2);
+  const cubes = [...Array(AMOUNT)].map((a) => (Math.random() - 0.5) / 2);
   const refs = useRef([]);
 
   useFrame((state, delta) => {
@@ -62,14 +64,14 @@ export function Omes() {
       <color args={[background]} attach="background" />
       <OrbitControls
         enableDamping
-        minDistance={20}
-        maxDistance={50}
+        minDistance={10}
+        maxDistance={100}
         autoRotate
         autoRotateSpeed={-0.1}
       />
       {/* <axesHelper args={[5]} /> */}
 
-      <Stage shadows={false} adjustCamera={false} environment={null}>
+      <Stage shadows={false} adjustCamera={true} environment={null}>
         <Center>
           <Text3D
             renderOrder={1}
@@ -89,42 +91,42 @@ export function Omes() {
             <meshNormalMaterial wireframe />
           </Text3D>
         </Center>
-        <Instances>
-          {cubes.map((ref, i) => {
-            function createPosition() {
-              const pos = [...Array(3)].map((a) => Math.random() - 0.5);
-              const [x, y, z] = pos;
-              if (
-                Math.sqrt(x ** 2 + y ** 2 + z ** 2) < 0.1 ||
-                Math.sqrt(x ** 2 + y ** 2 + z ** 2) > 0.5
-              )
-                return createPosition();
-              return pos;
-            }
-
-            const position = createPosition().map((a) => a * 100);
-
-            return (
-              <>
-                <boxGeometry />
-                <meshStandardMaterial />
-                <Instance
-                  position={position}
-                  scale={1 + Math.random() * 5}
-                  ref={(ref) => (refs.current[i] = ref)}
-                  rotation={[
-                    Math.random() - 0.5,
-                    Math.random() - 0.5,
-                    Math.random() - 0.5,
-                  ]}
-                  color={chroma.random().hex()}
-                />
-              </>
-            );
-          })}
-          <boxGeometry />
-        </Instances>
       </Stage>
+      <Instances limit={AMOUNT}>
+        {cubes.map((ref, i) => {
+          function createPosition() {
+            const pos = [...Array(3)].map((a) => Math.random() - 0.5);
+            const [x, y, z] = pos;
+            if (
+              Math.sqrt(x ** 2 + y ** 2 + z ** 2) < 0.15 ||
+              Math.sqrt(x ** 2 + y ** 2 + z ** 2) > 0.5
+            )
+              return createPosition();
+            return pos;
+          }
+
+          const position = createPosition().map((a) => a * 160);
+
+          return (
+            <>
+              <boxGeometry />
+              <meshStandardMaterial />
+              <Instance
+                position={position}
+                scale={1 + Math.random() * 5}
+                ref={(ref) => (refs.current[i] = ref)}
+                rotation={[
+                  Math.random() - 0.5,
+                  Math.random() - 0.5,
+                  Math.random() - 0.5,
+                ]}
+                color={chroma.random().hex()}
+              />
+            </>
+          );
+        })}
+        <boxGeometry />
+      </Instances>
     </>
   );
 }
