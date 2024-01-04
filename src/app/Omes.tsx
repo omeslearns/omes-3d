@@ -75,7 +75,7 @@ export function Omes() {
         <Center>
           <Text3D
             renderOrder={1}
-            font={'./fonts/helvetiker_regular.typeface.json'}
+            font={'/omes-3d/fonts/helvetiker_regular.typeface.json'}
             // material={material}
             scale={2}
             height={0.2}
