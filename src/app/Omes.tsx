@@ -86,7 +86,7 @@ export function Omes() {
             bevelOffset={0}
             bevelSegments={4}
           >
-            omes.is
+            Hi Antonia
             {/* <meshStandardMaterial color={'ivory'} wireframe /> */}
             <meshNormalMaterial wireframe />
           </Text3D>
