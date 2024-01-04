@@ -5,7 +5,7 @@ import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   cacheDir: './node_modules/.vite/omes.is',
-  base: '/omes-3d/',
+  base: '/',
   server: {
     port: 8000,
     host: 'localhost',
